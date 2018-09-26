@@ -1,0 +1,29 @@
+<table class="striped">
+  <thead>
+    <td>Nombre del tipo Animal</td>
+    <td>Descripción</td>
+    <td>Código</td>
+    <td>Estado</td>
+    <td>Acciones</td>
+  </thead>
+  <tr *ngFor="let tipo of tipoAnimales">
+    <td>{{tipo.nombretipoanimal}}</td>
+    <td>{{tipo.descripciontipoanimal}}</td>
+    <td>{{tipo.codigotipoanimal}}</td>
+    <td>
+      <span class="red" *ngIf="tipo.tipoanimalactivo == false ">Inactivo</span>
+      <span class="green" *ngIf="tipo.tipoanimalactivo == true ">Activo</span>
+      
+    </td>
+    <td>
+      <a [routerLink]="['/edittipoanimal']">
+        <i class="material-icons">add</i>
+      </a>
+      
+      <i class="material-icons">edit</i>
+      <i class="material-icons">delete</i>
+      
+    </td>
+
+  </tr>
+</table>
