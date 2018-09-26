@@ -1,29 +1,87 @@
-<table class="striped">
-  <thead>
-    <td>Nombre del tipo Animal</td>
-    <td>Descripción</td>
-    <td>Código</td>
-    <td>Estado</td>
-    <td>Acciones</td>
-  </thead>
-  <tr *ngFor="let tipo of tipoAnimales">
-    <td>{{tipo.nombretipoanimal}}</td>
-    <td>{{tipo.descripciontipoanimal}}</td>
-    <td>{{tipo.codigotipoanimal}}</td>
-    <td>
-      <span class="red" *ngIf="tipo.tipoanimalactivo == false ">Inactivo</span>
-      <span class="green" *ngIf="tipo.tipoanimalactivo == true ">Activo</span>
-      
-    </td>
-    <td>
-      <a [routerLink]="['/edittipoanimal']">
-        <i class="material-icons">add</i>
-      </a>
-      
-      <i class="material-icons">edit</i>
-      <i class="material-icons">delete</i>
-      
-    </td>
 
-  </tr>
-</table>
+<div class="row" *ngIf="agregarTA == false">
+  <div class="col s1 offset-s4" >
+      <a class="btn-floating btn-large waves-effect waves-light blue darken-3" (click)="addNewTA()" >
+      <i class="material-icons">add</i>
+      </a>
+  </div>
+  <div class="col s3 " >
+      <h6 class="blue-text text-darken-2"> Agregar nuevo tipo de animal </h6>      
+  </div>
+  <div class="col s12">
+    <table class="striped">
+      <thead>
+        <td>Nombre del tipo Animal</td>
+        <td>Descripción</td>
+        <td>Código</td>
+        <td>Estado</td>
+        <td>Acciones</td>
+      </thead>
+      <tr *ngFor="let tipo of tipoAnimales" class="hoverable">
+        <td>{{tipo.nombretipoanimal}}</td>
+        <td>{{tipo.descripciontipoanimal}}</td>
+        <td>{{tipo.codigotipoanimal}}</td>
+        <td>
+          <span class="red" *ngIf="tipo.tipoanimalactivo == false ">Inactivo</span>
+          <span class="green" *ngIf="tipo.tipoanimalactivo == true ">Activo</span>
+          
+        </td>
+        <td>
+          <a [routerLink]="['/addtipoanimal']">
+            <i class="material-icons">add</i>
+          </a>
+          <a (click)="editTA(tipo);">
+              <i class="material-icons">edit</i>
+          </a>
+          <a (click)="borrarTipoAnimal(tipo);" >
+            <i class="material-icons">delete</i>
+          </a>  
+          
+          
+        </td>
+    
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- Formulario para agregar o editar  -->
+<div class="row" *ngIf="agregarTA == true  ">
+  <form class="col s12" #tipoAnimalNewForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <h5 class="col s8 offset-s2 center-align"> {{tituloPrincipal}}</h5>
+      <div class="input-field col s4">
+        <input id="codigotipoanimal" [ngModelOptions]="{standalone: true}" #codigo="ngModel" [(ngModel)]="tanimal.codigotipoanimal" type="text"
+          class="validate" required>
+        <label for="codigotipoanimal">Código del tipo de animal</label>
+      </div>
+      <div class="input-field col s4">
+        <input id="nombretipoanimal" type="text" class="validate" [ngModelOptions]="{standalone: true}" #nombre="ngModel"
+          [(ngModel)]="tanimal.nombretipoanimal" required>
+        <label for="nombretipoanimal">Nombre del tipo de animal</label>
+      </div>
+      <div class="input-field col s4">
+        <label>
+          <input type="checkbox" checked="checked" #estate="ngModel" [(ngModel)]="tanimal.tipoanimalactivo" [ngModelOptions]="{standalone: true}" />
+          <span>El tipo de animal está activo ?</span>
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <textarea name="descripcion" id="descripcion" cols="30" rows="10" class="validate" #description="ngModel"
+          [(ngModel)]="tanimal.descripciontipoanimal"></textarea>
+        <label for="descripcion">Descripcion del tipo de animal</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s4 offset-s2">
+        <input type="submit" class=" btn-large waves-effect waves-light blue darken-3 " value="{{tituloBotonSubmit}}"  [disabled]="!tipoAnimalNewForm.form.valid">
+      </div>
+      <div class="col s4">
+        <a (click)="restartValues();" class="waves-effect waves-light btn-large red darken-1" value="Cancelar"> Cancelar</a>
+      </div>
+    </div>
+  </form>
+  </div>

@@ -7,13 +7,13 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { AddTipoanimalComponent } from './add.tipoanimal/add.tipoanimal.component';
+import { TespecieanimalComponent } from './tespecieanimal/tespecieanimal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TipoAnimalesComponent,
-    AddTipoanimalComponent
+    TespecieanimalComponent
   ],
   imports: [
     BrowserModule,
