@@ -8,6 +8,9 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { TespecieanimalComponent } from './tespecieanimal/tespecieanimal.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// tslint:disable-next-line:import-spacing
+import { MaterialModule } from './material';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,9 @@ import { TespecieanimalComponent } from './tespecieanimal/tespecieanimal.compone
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [ appRoutingProviders],
   bootstrap: [AppComponent]
